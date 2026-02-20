@@ -1,0 +1,260 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* NeuroConnect Color Palette - Clinical Elegance with Warmth */
+  --primary: #1a3a52; /* Deep Navy - Trust, Stability */
+  --primary-foreground: #f5f3f0; /* Cream - Warmth */
+  --sidebar-primary: #1a3a52;
+  --sidebar-primary-foreground: #f5f3f0;
+  --chart-1: #7a9e7e; /* Sage Green */
+  --chart-2: #c97a5c; /* Terracotta */
+  --chart-3: #1a3a52; /* Navy */
+  --chart-4: #7a9e7e; /* Sage */
+  --chart-5: #c97a5c; /* Terracotta */
+  --radius: 0.65rem;
+  --background: #f5f3f0; /* Cream */
+  --foreground: #2c2c2c; /* Charcoal */
+  --card: #ffffff; /* White */
+  --card-foreground: #2c2c2c; /* Charcoal */
+  --popover: #ffffff; /* White */
+  --popover-foreground: #2c2c2c; /* Charcoal */
+  --secondary: #7a9e7e; /* Sage Green */
+  --secondary-foreground: #f5f3f0; /* Cream */
+  --muted: #e8e6e3; /* Light Beige */
+  --muted-foreground: #6b6b6b; /* Medium Gray */
+  --accent: #c97a5c; /* Terracotta */
+  --accent-foreground: #ffffff; /* White */
+  --destructive: #c97a5c; /* Terracotta for warnings */
+  --destructive-foreground: #ffffff; /* White */
+  --border: #e8e6e3; /* Light Beige */
+  --input: #ffffff; /* White */
+  --ring: #7a9e7e; /* Sage Green */
+  --sidebar: #f5f3f0; /* Cream */
+  --sidebar-foreground: #2c2c2c; /* Charcoal */
+  --sidebar-accent: #c97a5c; /* Terracotta */
+  --sidebar-accent-foreground: #ffffff; /* White */
+  --sidebar-border: #e8e6e3; /* Light Beige */
+  --sidebar-ring: #7a9e7e; /* Sage Green */
+}
+
+.dark {
+  --primary: #1a3a52;
+  --primary-foreground: #f5f3f0;
+  --sidebar-primary: #1a3a52;
+  --sidebar-primary-foreground: #f5f3f0;
+  /* Dark mode not needed for this design - keeping light theme */
+  --background: #f5f3f0;
+  --foreground: #2c2c2c;
+  --card: #ffffff;
+  --card-foreground: #2c2c2c;
+  --popover: #ffffff;
+  --popover-foreground: #2c2c2c;
+  --secondary: #7a9e7e;
+  --secondary-foreground: #f5f3f0;
+  --muted: #e8e6e3;
+  --muted-foreground: #6b6b6b;
+  --accent: #c97a5c;
+  --accent-foreground: #ffffff;
+  --destructive: #c97a5c;
+  --destructive-foreground: #ffffff;
+  --border: #e8e6e3;
+  --input: #ffffff;
+  --ring: #7a9e7e;
+  --chart-1: #7a9e7e;
+  --chart-2: #c97a5c;
+  --chart-3: #1a3a52;
+  --chart-4: #7a9e7e;
+  --chart-5: #c97a5c;
+  --sidebar: #f5f3f0;
+  --sidebar-foreground: #2c2c2c;
+  --sidebar-accent: #c97a5c;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e8e6e3;
+  --sidebar-ring: #7a9e7e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+
+  /* NeuroConnect Typography System */
+  .font-display {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .font-body {
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .font-body-bold {
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 700;
+  }
+
+  /* Heading sizes */
+  .text-h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .text-h1 {
+      font-size: 4rem;
+    }
+  }
+
+  .text-h2 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .text-h2 {
+      font-size: 3rem;
+    }
+  }
+
+  .text-h3 {
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .text-h3 {
+      font-size: 2.25rem;
+    }
+  }
+
+  .text-h4 {
+    font-size: 1.5rem;
+    line-height: 1.33;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .text-h4 {
+      font-size: 1.875rem;
+    }
+  }
+
+  /* Decorative divider line */
+  .divider-accent {
+    @apply h-1 w-16 bg-gradient-to-r from-accent to-secondary rounded-full;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+}
